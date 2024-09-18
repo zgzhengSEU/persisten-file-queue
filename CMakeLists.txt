@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 3.14...3.22)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+message(STATUS "Building Greeter")
+
 # ---- Project ----
 
 # Note: update this to your new project's name and version
@@ -31,6 +35,19 @@ CPMAddPackage(
   GIT_TAG 10.2.1
   GITHUB_REPOSITORY fmtlib/fmt
   OPTIONS "FMT_INSTALL YES" # create an installable target
+)
+
+CPMAddPackage(
+  NAME spdlog
+  GIT_TAG v1.14.1 
+  GITHUB_REPOSITORY gabime/spdlog
+  OPTIONS "SPDLOG_FMT_EXTERNAL 1"
+)
+
+CPMAddPackage(
+  NAME mio
+  GIT_TAG master
+  GITHUB_REPOSITORY vimpunk/mio
 )
 
 # ---- Add source files ----
@@ -74,5 +91,5 @@ packageProject(
   INCLUDE_DESTINATION include/${PROJECT_NAME}-${PROJECT_VERSION}
   VERSION_HEADER "${VERSION_HEADER_LOCATION}"
   COMPATIBILITY SameMajorVersion
-  DEPENDENCIES "fmt 9.1.0"
+  DEPENDENCIES "spdlog 1.x"
 )

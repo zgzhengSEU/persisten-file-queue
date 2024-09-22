@@ -1,11 +1,11 @@
 #include <fmt/format.h>
-#include <greeter/greeter.h>
+#include <persistent-file-queue/persistent-file-queue.h>
 
-using namespace greeter;
+using namespace persistent_file_queue;
 
-Greeter::Greeter(std::string _name) : name(std::move(_name)) {}
+PersistentFileQueue::PersistentFileQueue(std::string _name) : name(std::move(_name)) {}
 
-std::string Greeter::greet(LanguageCode lang) const {
+std::string PersistentFileQueue::greet(LanguageCode lang) const {
   switch (lang) {
     default:
     case LanguageCode::EN:
